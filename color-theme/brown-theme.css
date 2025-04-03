@@ -4,7 +4,7 @@ BISMILLAAHIRRAHMAANIRRAHIIM - In the Name of Allah, Most Gracious, Most Merciful
 filename  : brown-theme.css
 desc      : CSS Brown Theme
 created_at: 2024-04-15 08:53:44
-updated_at: 2024-04-15 08:54:50
+updated_at: 2025-04-03 18:41:33
 author    : cahya dsn
 ================================================================================
 MIT License
@@ -27,7 +27,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-copyright (c) 2024 by cahya dsn; cahyadsn@gmail.com
+copyright (c) 2024-2025 by cahya dsn; cahyadsn@gmail.com
 ================================================================================
 */
 .theme-l5 {color:#000 !important; background-color:#f8f4f3 !important}
@@ -52,3 +52,8 @@ copyright (c) 2024 by cahya dsn; cahyadsn@gmail.com
 .hover-theme:hover {color:#fff !important; background-color:#795548 !important}
 .hover-text-theme:hover {color:#795548 !important}
 .hover-border-theme:hover {border-color:#795548 !important}
+
+.radio {accent-color: #49332c !important}
+.input, option {background-color:#f8f4f3 !important;}
+
+.striped tbody tr:nth-child(even){background-color:#f8f4f3 !important;}

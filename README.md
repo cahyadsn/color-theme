@@ -22,6 +22,7 @@ Universal css color theme [https://github.com/cahyadsn/color-theme]
 
 ## CHANGE LOG
 - panambahan color theme untuk striped table (250403)
+- panambahan color theme untuk radio button, input dan option element (250403)
 
 ## DONASI
 - untuk donasi via transfer 

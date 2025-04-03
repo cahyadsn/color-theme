@@ -4,7 +4,7 @@ BISMILLAAHIRRAHMAANIRRAHIIM - In the Name of Allah, Most Gracious, Most Merciful
 filename  : blue-theme.css
 desc      : CSS Blue Theme
 created_at: 2024-03-01 23:35:21
-updated_at: 2024-03-01 23:35:56
+updated_at: 2025-04-03 18:40:12
 author    : cahya dsn
 ================================================================================
 MIT License
@@ -27,7 +27,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-copyright (c) 2024 by cahya dsn; cahyadsn@gmail.com
+copyright (c) 2024-2025 by cahya dsn; cahyadsn@gmail.com
 ================================================================================
 */
 .theme-l5 {color:#000 !important; background-color:#f2f9fe !important}
@@ -52,3 +52,8 @@ copyright (c) 2024 by cahya dsn; cahyadsn@gmail.com
 .hover-theme:hover {color:#fff !important; background-color:#2196f3 !important}
 .hover-text-theme:hover {color:#2196f3 !important}
 .hover-border-theme:hover {border-color:#2196f3 !important}
+
+.radio {accent-color: #085a9d !important}
+.input, option {background-color:#f2f9fe !important;}
+
+.striped tbody tr:nth-child(even){background-color:#f2f9fe !important;}

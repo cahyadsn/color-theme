@@ -4,7 +4,7 @@ BISMILLAAHIRRAHMAANIRRAHIIM - In the Name of Allah, Most Gracious, Most Merciful
 filename  : yellow-theme.css
 desc      : CSS Yellow Theme
 created_at: 2024-03-06 09:19:13
-updated_at: 2024-03-06 09:25:44
+updated_at: 2025-04-03 18:46:58
 author    : cahya dsn
 ================================================================================
 MIT License
@@ -27,7 +27,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-copyright (c) 2024 by cahya dsn; cahyadsn@gmail.com
+copyright (c) 2024-2025 by cahya dsn; cahyadsn@gmail.com
 ================================================================================
 */
 .theme-l5 {color:#000 !important; background-color:#fffef3 !important}
@@ -52,3 +52,8 @@ copyright (c) 2024 by cahya dsn; cahyadsn@gmail.com
 .hover-theme:hover {color:#000 !important; background-color:#ffeb3b !important}
 .hover-text-theme:hover {color:#ffeb3b !important}
 .hover-border-theme:hover {border-color:#ffeb3b !important}
+
+.radio {accent-color: #beab00 !important}
+.input, option {background-color:#fffef3 !important;}
+
+.striped tbody tr:nth-child(even){background-color:#fffef3 !important;}

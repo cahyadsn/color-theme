@@ -12,13 +12,16 @@ Universal css color theme [https://github.com/cahyadsn/color-theme]
 ## available theme
 - black-theme
 - blue-theme
+- brown-theme
 - cyan-theme
 - green-theme
 - grey-theme
+- indigo-theme
 - red-theme
 - yellow-theme
 
 ## TODO
+- penambahan theme untuk warna-warna yang lain
 
 ## CHANGE LOG
 - panambahan color theme untuk striped table (250403)

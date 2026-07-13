@@ -1,4 +1,4 @@
-/* w3color.js ver.1.18 by w3schools.com (Do not remove this line)*/
+/* color-theme.js ver.1.18 by w3schools.com (Do not remove this line)*/
 (function () {
 function w3color(color, elmnt) {
   if (!(this instanceof w3color)) { return new w3color(color, elmnt); }

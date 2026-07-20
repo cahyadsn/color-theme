@@ -1,137 +1,34 @@
 <?php
 session_start();
-/**
- * Converts RGB values to HSL.
- *
- * @param int $r Red value (0-255)
- * @param int $g Green value (0-255)
- * @param int $b Blue value (0-255)
- * @return array [hue, saturation, lightness] (0-1)
- */
-function rgbToHsl($r, $g, $b) {
-    $r /= 255;
-    $g /= 255;
-    $b /= 255;
-    $max = max($r, $g, $b);
-    $min = min($r, $g, $b);
-    $delta = $max - $min;
-    $l = ($max + $min) / 2;
-    if ($delta == 0) {
-        return [0, 0, $l];
-    }
-    $s = $delta / (1 - abs(2 * $l - 1));
-    if ($max == $r) {
-        $h = ($g - $b) / $delta + ($g < $b ? 6 : 0);
-    } elseif ($max == $g) {
-        $h = ($b - $r) / $delta + 2;
-    } else {
-        $h = ($r - $g) / $delta + 4;
-    }
-    $h /= 6;
-    return [$h, $s, $l];
-}
+require_once __DIR__ . '/color_utils.php';
 
 /**
- * Helper function for HSL to RGB conversion.
- */
-function hueToRgb($p, $q, $t) {
-    if ($t < 0) $t += 1;
-    if ($t > 1) $t -= 1;
-    if ($t < 1/6) return $p + ($q - $p) * 6 * $t;
-    if ($t < 1/2) return $q;
-    if ($t < 2/3) return $p + ($q - $p) * (2/3 - $t) * 6;
-    return $p;
-}
-
-/**
- * Converts a HEX color string to RGB decimal values.
+ * Converts a HEX color string to RGB decimal values as a comma-separated string.
  *
- * @param string $hex HEX color string, e.g., "#FF0000" or "FF0000"
- * @return string RGB string in format "rgb(r,g,b)" or error message
+ * @param string $hex HEX color string
+ * @return string RGB string "r,g,b" or error message
  */
 function hexToRgb($hex) {
-    // Remove '#' if present
-    $hex = ltrim($hex, '#');
-    // Validate hex length (3 or 6 characters)
-    if (strlen($hex) == 3) {
-        $hex = $hex[0] . $hex[0] . $hex[1] . $hex[1] . $hex[2] . $hex[2];
-    } elseif (strlen($hex) != 6) {
+    $rgb = parseHexColor($hex);
+    if ($rgb === null) {
         return "Invalid HEX color";
     }
-    // Validate hex characters
-    if (!ctype_xdigit($hex)) {
-        return "Invalid HEX color";
-    }
-    // Extract RGB components
-    $r = hexdec(substr($hex, 0, 2));
-    $g = hexdec(substr($hex, 2, 2));
-    $b = hexdec(substr($hex, 4, 2));
-    return "$r,$g,$b";
+    return implode(',', $rgb);
 }
-
-/**
- * Convert RGB decimal values to HEX color format
- *
- * @param int $r Red value (0-255)
- * @param int $g Green value (0-255)
- * @param int $b Blue value (0-255)
- * @return string HEX color string (e.g., "#ff00aa")
- */
-function rgbToHex($r, $g, $b) {
-    // Validate inputs
-    foreach ([$r, $g, $b] as $value) {
-        if (!is_int($value) || $value < 0 || $value > 255) {
-            throw new InvalidArgumentException("RGB values must be integers between 0 and 255.");
-        }
-    }
-    // Convert to HEX format
-    return sprintf("#%02X%02X%02X", $r, $g, $b);
-}
-
-
-/**
- * Converts HSL values to RGB.
- *
- * @param float $h Hue (0-1)
- * @param float $s Saturation (0-1)
- * @param float $l Lightness (0-1)
- * @return array [red, green, blue] (0-255)
- */
-function hslToRgb($h, $s, $l) {
-    if ($s == 0) {
-        $r = $g = $b = $l;
-    } else {
-        $q = $l < 0.5 ? $l * (1 + $s) : $l + $s - $l * $s;
-        $p = 2 * $l - $q;
-        $r = hueToRgb($p, $q, $h + 1/3);
-        $g = hueToRgb($p, $q, $h);
-        $b = hueToRgb($p, $q, $h - 1/3);
-    }
-    return [round($r * 255), round($g * 255), round($b * 255)];
-}
-
-function foreColor($n,$r,$g,$b) {
-  $fc='#000';
-  $fc=((($r * 299 + $g * 587 + $b * 114) / 1000) < $n) ? '#fff':$fc;
-  return $fc;
-}
-
 
 /**
  * Generates a monochrome color theme from an input RGB color.
  * The theme includes 5 shades: darkest, dark, base, light, lightest.
  *
- * @param string $rgbInput RGB string in format "r,g,b" (e.g., "255,0,0")
- * @return array Array of RGB strings in format "rgb(r,g,b)"
+ * @param string|array $rgbInput RGB string in format "r,g,b" or array [r,g,b]
+ * @return array Theme color mapping
  */
 function generateMonochromeTheme($rgbInput) {
-    // Parse input
-    list($r, $g, $b) = explode(',', $rgbInput);
-    $r = (int)trim($r);
-    $g = (int)trim($g);
-    $b = (int)trim($b);
+    list($r, $g, $b) = parseRgbInput($rgbInput);
+
     // Convert to HSL
     list($h, $s, $l) = rgbToHsl($r, $g, $b);
+
     // Define lightness variations relative to base (clamped 0-1)
     $variations = [
         'd5'    => max(0, $l - ($l/5)*2.5),
@@ -146,11 +43,11 @@ function generateMonochromeTheme($rgbInput) {
         'l4'    => min(1, $l + ((1.0-$l)/5)*4),
         'l5'    => min(1, $l + ((1.0-$l)/5)*4.7)
     ];
+
     $theme = [];
     foreach ($variations as $key => $newL) {
         list($nr, $ng, $nb) = hslToRgb($h, $s, $newL);
         $theme[$key] = array("rgb($nr,$ng,$nb)", rgbToHex((int)$nr,(int)$ng,(int)$nb), foreColor(165,(int)$nr,(int)$ng,(int)$nb));
-        //$theme[$key] = "rgb($nr,$ng,$nb)";
     }
     return $theme;
 }

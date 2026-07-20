@@ -16,6 +16,7 @@ Universal CSS color theme system and styling framework.
 - [Available Themes](#available-themes)
 - [Tools and Utilities](#tools-and-utilities)
 - [How to Use](#how-to-use)
+- [Testing](#testing)
 - [Roadmap / TODO](#roadmap--todo)
 - [Changelog](#changelog)
 - [Donations](#donations)
@@ -30,19 +31,21 @@ Universal CSS color theme system and styling framework.
 
 ## Directory Structure
 
-* **[`apps/`](file:///D:/laragon/repo/dev/color-theme/apps)**: Contains web-based demonstration and theme-building applications.
-  * **[`color_generator.html`](file:///D:/laragon/repo/dev/color-theme/apps/color_generator.html)**: Interactive web app to visually create, preview, and generate theme CSS.
-  * **[`color-theme.css`](file:///D:/laragon/repo/dev/color-theme/apps/color-theme.css)**: The base stylesheet.
-  * **[`color-theme.js`](file:///D:/laragon/repo/dev/color-theme/apps/color-theme.js)**: Color utility functions.
-* **[`color-theme/`](file:///D:/laragon/repo/dev/color-theme/color-theme)**: Production-ready CSS stylesheets for pre-defined themes.
-* **[`fonts/`](file:///D:/laragon/repo/dev/color-theme/fonts)**: Icon assets (FontAwesome) utilized by the application framework.
-* **[`tools/`](file:///D:/laragon/repo/dev/color-theme/tools)**: PHP scripts to calculate color spaces, conversions, and theme generation.
+* **[`apps/`](/apps)**: Contains web-based demonstration and theme-building applications.
+  * **[`color_generator.html`](/apps/color_generator.html)**: Interactive web app to visually create, preview, and generate theme CSS.
+  * **[`color-theme.css`](/apps/color-theme.css)**: The base stylesheet.
+  * **[`color-theme.js`](/apps/color-theme.js)**: Color utility functions.
+* **[`color-theme/`](/color-theme)**: Production-ready CSS stylesheets for pre-defined themes.
+* **[`fonts/`](/fonts)**: Icon assets (FontAwesome) utilized by the application framework.
+* **[`tools/`](/tools)**: PHP scripts to calculate color spaces, conversions, and theme generation.
+  * **[`color_utils.php`](/tools/color_utils.php)**: Shared color library containing utility formulas.
+* **[`tests/`](/tests)**: Native PHP unit testing suite to verify color calculations.
 
 ---
 
 ## Available Themes
 
-The repository includes pre-built themes under the **[`color-theme/`](file:///D:/laragon/repo/dev/color-theme/color-theme)** folder:
+The repository includes pre-built themes under the **[`color-theme/`](/color-theme)** folder:
 * `black-theme.css`
 * `blue-theme.css`
 * `brown-theme.css`
@@ -58,7 +61,7 @@ The repository includes pre-built themes under the **[`color-theme/`](file:///D:
 
 ## Tools and Utilities
 
-The **[`tools/`](file:///D:/laragon/repo/dev/color-theme/tools)** folder contains PHP utility scripts for color theory operations:
+The **[`tools/`](/tools)** folder contains PHP utility scripts for color theory operations:
 * **`theme.php`**: Generates a standard theme CSS configuration.
 * **`color_gradient.php`**: Computes color gradients and transitions.
 * **`rgb_dec2hex.php` / `rgb_hex2dec.php`**: Conversions between decimal and hexadecimal formats.
@@ -80,9 +83,22 @@ To use one of the pre-built themes, include the theme stylesheet in the `<head>`
 ```
 
 ### Generating Custom Themes
-1. Open **[`apps/color_generator.html`](file:///D:/laragon/repo/dev/color-theme/apps/color_generator.html)** in any browser.
+1. Open **[`apps/color_generator.html`](/apps/color_generator.html)** in any browser.
 2. Select or input a color hex code.
 3. Preview the generated theme live and export the resulting CSS code.
+
+---
+
+## Testing
+
+A native PHP unit testing suite is provided in the **[`tests/`](/tests)** directory to ensure mathematical correctness of the color calculations.
+
+To run the unit tests:
+```bash
+php tests/color_utils_test.php
+```
+
+For more comprehensive information, see the [Testing README](/tests/README.md).
 
 ---
 
@@ -94,6 +110,17 @@ To use one of the pre-built themes, include the theme stylesheet in the `<head>`
 ---
 
 ## Changelog
+
+* **2026-07-20**
+  * Consolidated color calculations across theme scripts into a unified [`color_utils.php`](/tools/color_utils.php) library.
+  * Created a native PHP unit testing suite under [`tests/`](/tests) to verify all utility logic.
+  * Added developer documentation for running and writing tests.
+
+* **2026-07-13**
+  * Reorganized project structure: moved web demonstration and theme builder files into the new `apps/` directory.
+  * Renamed stylesheet and JavaScript assets (`w3schools.css` to `color-theme.css` and `w3color.js` to `color-theme.js`).
+  * Added and updated PHP utility scripts in the `tools/` directory.
+  * Updated README documentation to reflect the new structure.
 
 * **2025-04-03**
   * Added color theme support for striped tables.

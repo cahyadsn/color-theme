@@ -1,23 +1,5 @@
 <?php
-/**
- * Convert RGB decimal values to HEX color format
- *
- * @param int $r Red value (0-255)
- * @param int $g Green value (0-255)
- * @param int $b Blue value (0-255)
- * @return string HEX color string (e.g., "#ff00aa")
- */
-function rgbToHex($r, $g, $b) {
-    // Validate inputs
-    foreach ([$r, $g, $b] as $value) {
-        if (!is_int($value) || $value < 0 || $value > 255) {
-            throw new InvalidArgumentException("RGB values must be integers between 0 and 255.");
-        }
-    }
-
-    // Convert to HEX format
-    return sprintf("#%02X%02X%02X", $r, $g, $b);
-}
+require_once __DIR__ . '/color_utils.php';
 
 // Example usage:
 try {
